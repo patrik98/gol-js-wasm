@@ -1,0 +1,34 @@
+{
+  "name": "gol-js-wasm",
+  "version": "1.0.0",
+  "description": "GOL implementation with JavaScript and WebAssembly.",
+  "main": "docs/index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "web": "http-server ./docs --cors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patrik98/gol-js-wasm.git"
+  },
+  "keywords": [
+    "Game of Life",
+    "JavaScript",
+    "WebAssembly",
+    "performance"
+  ],
+  "author": "Patrik Golec <golecpatrik@gmail.com>",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/patrik98/gol-js-wasm/issues"
+  },
+  "homepage": "https://github.com/patrik98/gol-js-wasm#readme",
+  "dependencies": {
+    "http-server": "^0.12.1",
+    "typescript": "^3.8.3",
+    "tslib": "^1.11.1",
+    "rollup": "^2.6.1",
+    "rollup-plugin-copy": "^3.3.0",
+    "@rollup/plugin-typescript": "^4.1.1"
+  }
+}

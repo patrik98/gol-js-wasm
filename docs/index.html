@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Game of Life (JS/WASM)</title>
+	<meta charset="utf-8">
+	<style>
+		body {
+			margin-top: 3rem;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		.center {
+			overflow: hidden;
+			margin: 4rem auto auto auto;
+			width: 75%;
+			padding: 5% 10% 10% 10%;
+			border: 2px solid black;
+		}
+
+		.button {
+			height: 90px;
+			width: 150px;
+			font-size: large;
+			border: 2px solid black;
+		}
+
+		.select {
+			width: 150%;
+			padding: 15px;
+			font-size: large;
+		}
+		
+	</style>
+</head>
+
+<body >
+	<h1 style="text-align: center;">Conway's Game of Life</h1>
+
+		<section class="center" style="display: inline-flexbox">
+			<section style="float: left;">
+				<div>
+					<h2>Statistics</h2>
+					<div style="font-size: large;">
+						<p>Generation: <span id="outputGen">-</span></p>
+						<p>Total time: <span id="outputTime">-</span></p>
+						<p>Gens/sec: <span id="outputGenSec">-</span></p>
+					</div>
+				</div>
+				<div>
+					<h2>Logic processor</h2>					
+					<select id="proc-select" class="select">
+						<option selected value="0">JavaScript</option>
+						<option value="1">WebAssembly</option>
+					</select>
+				</div>
+
+				<div style="margin-top: 4rem;">
+					<h2>Generation Limit:</h2>	
+					<select id="lim-select" class="select">
+						<option selected value="0">none</option>
+						<option value="5000">5.000</option>
+						<option value="10000">10.000</option>
+						<option value="20000">20.000</option>
+						<option value="30000">30.000</option>
+						<option value="50000">50.000</option>
+						<option value="50000">75.000</option>
+					</select>
+				</div>
+			</section>
+			<section style="float: right;">
+				<div>
+					<h2>Controls</h2>
+					<button id="start-button" class="button btnJS"
+					style="float: left; margin-right: 20px; background-color: rgba(0, 162, 255, 0.3);">
+						Start
+					</button>
+
+					<button id="end-button" class="button" style="float: right; background-color: rgba(255, 0, 0, 0.3);" disabled>End</button>             
+				</div>
+			</section>
+		</section>
+</body>
+
+
+<script src="./index.js"></script>
+
+</html>
