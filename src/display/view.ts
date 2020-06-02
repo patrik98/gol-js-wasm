@@ -7,6 +7,7 @@ export class View {
 
     protected selectProc:HTMLSelectElement;
     protected selectLimit:HTMLSelectElement;
+    protected selectInit:HTMLSelectElement;
 
     protected buttonStart:HTMLButtonElement;
     protected buttonEnd:HTMLButtonElement;
@@ -18,6 +19,7 @@ export class View {
 
         this.selectProc = document.querySelector('#proc-select');
         this.selectLimit = document.querySelector('#lim-select');
+        this.selectInit = document.querySelector('#init-select');
 
 
         this.buttonStart = document.querySelector('#start-button');
@@ -25,6 +27,7 @@ export class View {
 
         this.selectProc.addEventListener('change', (event:any) => this.changeProcessor(event.target.value));
         this.selectLimit.addEventListener('change', (event:any) => this.changeLimit(event.target.value));
+        this.selectInit.addEventListener('change', (event:any) => this.changeInit(event.target.value));
 
         this.buttonStart.addEventListener('click', () => this.start());
         this.buttonEnd.addEventListener('click', () => this.end());
@@ -37,6 +40,7 @@ export class View {
 
         this.selectLimit.setAttribute("disabled", "true");
         this.selectProc.setAttribute("disabled", "true");
+        this.selectInit.setAttribute("disabled", "true");
 
         this.trigger('start');
     }
@@ -48,6 +52,7 @@ export class View {
 
         this.selectLimit.removeAttribute("disabled");
         this.selectProc.removeAttribute("disabled");
+        this.selectInit.removeAttribute("disabled");
 
         this.trigger('end');
     }
@@ -65,6 +70,12 @@ export class View {
         })
     }
 
+    changeInit(init: number) {
+        this.trigger('chInit', {
+            init: init
+        })
+    }
+
     render(data:{generation: string, time: string, gps: string} = {generation: "-", time: "-", gps: "-"}) {
         this.outputGeneration.innerHTML = data.generation.toString();
         this.outputTime.innerHTML = data.time.toString() + " seconds";
@@ -78,6 +89,7 @@ export class View {
 
         this.selectLimit.removeAttribute("disabled");
         this.selectProc.removeAttribute("disabled");
+        this.selectInit.removeAttribute("disabled");
         //this.selectLimit.selectedIndex = 0;
     }
 

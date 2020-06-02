@@ -96,14 +96,28 @@ export class ModelJS {
         }));
     }
 
-    private buildInitState() {
+    private buildInitState(val: number) {
         this.clear();
-        this._board = initArrays.get20pArray();
+
+        switch(val) {
+            case 20:
+                this._board = initArrays.get20pArray();
+                break;
+            case 40:
+                this._board = initArrays.get40pArray();
+                break;
+            case 60:
+                this._board = initArrays.get60pArray();
+                break;
+            case 80:
+                this._board = initArrays.get80pArray();
+                break;
+        }
     }
 
-    public initBoard() {
-        //this.randomize(prob);
-        this.buildInitState();
+    public async initBoard(val: number) {
+        //this.randomize(0.8);
+        return this.buildInitState(val);
      }
 
 }

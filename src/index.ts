@@ -1,7 +1,7 @@
 import { Controller } from './controller';
 
 const genLimit = 0;
-const probability = 0.2;
+const probability = 20;
 
 var ctrl: Controller;
 

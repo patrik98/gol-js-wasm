@@ -16,7 +16,7 @@ export class Controller {
 
     private constructor() { }
 
-    static async create(genLimit: number = 0, processor: number = 0, probability: number = 0.2) {
+    static async create(genLimit: number = 0, processor: number = 0, probability: number = 20) {
         let ctrl = new Controller();
 
         ctrl.display = new View();
@@ -56,6 +56,16 @@ export class Controller {
             }
             else if (event == "chLimit") {
                 this.genLimit = data['limit'];
+
+                if (this.playing) {
+                    this.end();
+                } else {
+                    this.init();  
+                } 
+            }
+
+            else if (event == "chInit") {
+                this.probability = parseInt(data['init']);
 
                 if (this.playing) {
                     this.end();
@@ -122,7 +132,7 @@ export class Controller {
     async init() {
         this.playing = false;
 
-        return this.model.initBoard();
+        return await this.model.initBoard(this.probability);
     }
 
     async changeProcessor() {
@@ -131,17 +141,18 @@ export class Controller {
         if (this.processor == 0) {
             this.procName = "JavaScript";
             this.model = new gol.ModelJS();
-            this.model.initBoard();
+            this.model.initBoard(this.probability);
         } 
         
         else {
             return await gol.ModelWasm.create().then(obj => {
                 this.procName = "WebAssembly";
-                obj.initBoard();
+                obj.initBoard(this.probability);
                 return this.model = obj;
             });
         }
     }
+
     
     resetDisplay(val: number) {
         if (val > 0) {

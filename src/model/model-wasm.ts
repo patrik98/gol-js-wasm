@@ -81,10 +81,25 @@ export class ModelWasm {
         return board;
     }
 
-    private buildInitState() {
+    private buildInitState(val: number) {
         this.clear();
 
-        let tmp = initArrays.get20pArray();
+        let tmp: number[][];
+        
+        switch(val) {
+            case 20:
+                tmp = initArrays.get20pArray();
+                break;
+            case 40:
+                tmp = initArrays.get40pArray();
+                break;
+            case 60:
+               tmp = initArrays.get60pArray();
+                break;
+            case 80:
+                tmp = initArrays.get80pArray();
+                break;
+        }
 
         for (let r = 0; r < tmp.length; r++) {
             for (let c = 0; c < tmp[c].length; c++) {
@@ -93,8 +108,8 @@ export class ModelWasm {
         }
     }
     
-    public initBoard() {
+    public async initBoard(val: number) {
         //this.randomize(prob);
-        this.buildInitState();
+        return this.buildInitState(val);
     }
 }
