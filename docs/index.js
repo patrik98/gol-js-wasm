@@ -478,12 +478,13 @@
                     _this.model.transform();
                     _this.loop();
                 }
-            }, 1);
+            }, 1000 / 60); //no gen limit = calculation limited to 60 gen/sec
         };
         Controller.prototype.loopLimit = function () {
             while (this.model.generation < this.genLimit) {
                 this.model.transform();
             }
+            //gen limit = calculation of gen/sec unlimited -> 100% cpu usage
             return;
         };
         Controller.prototype.start = function () {

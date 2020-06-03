@@ -1,6 +1,6 @@
 {
   "name": "gol-js-wasm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "GOL implementation with JavaScript and WebAssembly.",
   "main": "docs/index.js",
   "scripts": {

@@ -83,14 +83,14 @@ export class Controller {
 
                 this.loop();
             }            
-        }, 1);
+        }, 1000 / 60); //no gen limit = calculation limited to 60 gen/sec
     }
 
     loopLimit() {
         while (this.model.generation < this.genLimit) {
             this.model.transform();
         }
-
+        //gen limit = calculation of gen/sec unlimited -> 100% cpu usage
         return;
     }
 
