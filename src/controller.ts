@@ -83,7 +83,7 @@ export class Controller {
 
                 this.loop();
             }            
-        }, 1000 / 60); //no gen limit = calculation limited to 60 gen/sec
+        }, 1000 / 30); //no gen limit = calculation limited to 30 gens/sec
     }
 
     loopLimit() {
