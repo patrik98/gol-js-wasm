@@ -491,6 +491,7 @@
             this.outputConfig(this.procName, this.model.livingCells);
             this.playing = true;
             this.startTime = new Date().getTime(); //UNIX EPOCH
+            console.profile('test1'); //profiling with JavaScript profiler in Chrome, performance tool in FireFox
             this.display.render({
                 generation: "...",
                 time: "...",
@@ -508,6 +509,7 @@
             var time = new Date().getTime() - this.startTime;
             var gen = this.model.generation;
             var gps = gen / (time / 1000);
+            console.profileEnd('test1');
             this.outputResults(gen, time, gps, this.model.livingCells);
             this.display.render({
                 generation: gen.toString(),

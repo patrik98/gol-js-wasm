@@ -77,6 +77,7 @@ export class Controller {
     }
 
     loop() {
+
         setTimeout(() => {           
             if (this.playing) {
                 this.model.transform();
@@ -100,6 +101,8 @@ export class Controller {
         this.playing = true;
         this.startTime = new Date().getTime(); //UNIX EPOCH
 
+        console.profile('test1'); //profiling with JavaScript profiler in Chrome, performance tool in FireFox
+
         this.display.render({
             generation: "...",
             time: "...",
@@ -110,11 +113,14 @@ export class Controller {
     }
 
     end() {
+
         this.playing = false;
 
         let time = new Date().getTime() - this.startTime;
         let gen = this.model.generation;
         let gps = gen / (time / 1000);
+
+        console.profileEnd('test1');
         
         this.outputResults(gen, time, gps, this.model.livingCells);
 
