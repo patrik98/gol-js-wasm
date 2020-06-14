@@ -78,13 +78,17 @@ export class Controller {
 
     loop() {
 
-        setTimeout(() => {           
-            if (this.playing) {
-                this.model.transform();
-
-                this.loop();
-            }            
-        }, 1000 / 30); //no gen limit = calculation limited to 30 gens/sec
+        if (new Date().getTime() - this.startTime <= 30000) {
+            setTimeout(() => {           
+                if (this.playing) {
+                    this.model.transform();
+    
+                    this.loop();
+                }            
+            }, 1000 / 30); //no gen limit = calculation limited to 30 gens/sec
+        } else {
+            this.end();
+        }
     }
 
     loopLimit() {

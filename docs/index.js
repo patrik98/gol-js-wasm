@@ -473,12 +473,17 @@
         };
         Controller.prototype.loop = function () {
             var _this = this;
-            setTimeout(function () {
-                if (_this.playing) {
-                    _this.model.transform();
-                    _this.loop();
-                }
-            }, 1000 / 30); //no gen limit = calculation limited to 30 gens/sec
+            if (new Date().getTime() - this.startTime <= 30000) {
+                setTimeout(function () {
+                    if (_this.playing) {
+                        _this.model.transform();
+                        _this.loop();
+                    }
+                }, 1000 / 30); //no gen limit = calculation limited to 30 gens/sec
+            }
+            else {
+                this.end();
+            }
         };
         Controller.prototype.loopLimit = function () {
             while (this.model.generation < this.genLimit) {
